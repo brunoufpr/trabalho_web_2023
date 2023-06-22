@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <%= /// posts %>
+    <nav><% if(usuarioLogado){ %>
+        <ul>
+          <li>Ola <%= usuarioLogado.nome %>
+          </li>
+          <li><a href="/logout">Logout</a></li>
+        </ul><% }else{ %>
+          <ul>
+            <li><a href="/loginForm">Login</a></li>
+            <li><a href="/signupForm">Cadastrar</a></li>
+          </ul>
+          <% } %>
+    </nav>
+    <form action="/criarpost" method="post">
+      <label for="titulo">
+        Titulo:
+      </label>
+      <input type="text" id="titulo" name="titulo" placeholder="Digite um titulo:"> <br>
+      <label for="conteudo">
+        Mensagem:
+      </label> <br>
+      <textarea name="conteudo" id="conteudo" cols="30" rows="10"></textarea> <br>
+      <input type="submit" value="Criar Post">
+    </form>
+
+    <ul>
+      <% for (post of posts) { %>
+        <li>
+          <%= post.titulo %>| <%= post.conteudo %> |
+              <%= post.dataCriacao.toLocaleDateString('pt-BR') %>
+                <%= post.qtdeCurtidas %>
+
+                  <% } %>
+        </li>
+
+        </del>
+
+    </ul>
+</body>
+
+</html>
